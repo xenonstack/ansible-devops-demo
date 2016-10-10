@@ -1,0 +1,53 @@
+---
+
+
+## Add Nginx Key to server
+
+- name: NGINX | Adding NGINX signing key
+  apt_key: url=http://nginx.org/keys/nginx_signing.key state=present
+  become_method: sudo
+  become: yes
+
+## Add source list in apt source for nginx
+ 
+- name: NGINX | Adding sources.list deb url for NGINX
+  lineinfile: dest=/etc/apt/sources.list line="deb http://nginx.org/packages/mainline/ubuntu/ trusty nginx"
+  become_method: sudo
+  become: yes
+ 
+
+ ## Update the apt repos links
+
+- name: NGINX | Updating apt cache
+  apt: update_cache=yes
+  become_method: sudo
+  become: yes
+ 
+ # Install nginx on server
+
+- name: NGINX | Installing NGINX
+  apt: name=nginx state=latest 
+  become_method: sudo
+  become: yes
+ 
+
+## Transfer the nginx conf file of Go app for load balanceing 
+- template: src=go-app.j2 dest=/etc/nginx/conf.d/go-app.conf
+  become_method: sudo
+  become: yes
+
+
+## Remove the default nginx conf file
+
+- name: Remove Default conf  
+  file: path=/etc/nginx/conf.d/default.conf state=absent
+
+
+## Restart nginx after configure 
+
+- name: NGINX | Starting NGINX
+  service: name=nginx state=restarted
+  become_method: sudo
+  become: yes
+
+

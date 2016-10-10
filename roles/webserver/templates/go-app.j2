@@ -1,0 +1,17 @@
+
+    upstream goapp {
+        {% for host in groups['appserverint'] %}
+    server {{ host }}:8484;
+{% endfor %}
+
+     }
+
+
+    server {
+        listen 80;
+       
+        location / {
+            proxy_pass http://goapp;
+        }
+    }
+
