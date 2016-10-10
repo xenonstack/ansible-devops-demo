@@ -1,9 +1,9 @@
 ---
 ## Here You have to set Variables Related to AWS account
 
-ec2_access_key: AKIAIJYEO22XFL43QUXA
+ec2_access_key: XXXXX
 
-ec2_secret_key: 5RZsnOoECti9lK4oM9XegaPMx+JCimF/SEQggtRH
+ec2_secret_key: XXXXX+JCXXXX
 
 region: us-east-1
 
