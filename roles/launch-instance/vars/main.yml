@@ -1,0 +1,32 @@
+---
+## Here You have to set Variables Related to AWS account
+
+ec2_access_key: AKIAIJYEO22XFL43QUXA
+
+ec2_secret_key: 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
+
+region: us-east-1
+
+project_name: Pro-test2
+
+instance_type: t2.micro
+
+#Number of Web server
+
+web_count: 1
+
+#Number of App Server
+
+app_count: 2
+
+## SSH Access Key File
+
+keypair: "{{ project_name }}-key"
+
+##security group Name Which created in vpc
+
+security_group: "{{ project_name }}-SG"
+
+
+## AMI ID from which server is lanuched
+image: ami-2d39803a 

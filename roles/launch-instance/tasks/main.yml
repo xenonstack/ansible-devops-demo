@@ -1,0 +1,7 @@
+---
+
+- include: gen_ssh_key.yml
+- include: Web_SG.yml
+- include: webserver-vm.yml
+- include: appserver-vm.yml
+

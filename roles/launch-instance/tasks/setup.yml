@@ -1,0 +1,20 @@
+## Install pip package
+
+- yum: name=python-pip state=latest
+  when: ansible_os_family == "RedHat"
+  become_method: sudo
+  become: yes
+ 
+
+- apt: name=python-pip state=latest
+  sudo: True
+  when: ansible_os_family == "Debian"
+  become_method: sudo
+  become: yes
+ 
+## install boto for aws ansible modules
+
+- pip: name=boto state=latest
+  become_method: sudo
+  become: yes
+ 

@@ -1,0 +1,15 @@
+##Create SSH key pair
+- name: Create an EC2 key
+  ec2_key:
+    ec2_access_key: "{{ ec2_access_key }}"
+    ec2_secret_key: "{{ ec2_secret_key }}"
+    name: "{{ project_name }}-key"
+    region: "{{ region }}"
+  register: ec2_key_out
+
+- debug: msg="{{ ec2_key_out }}"
+
+##SAVE private key to local system
+- name: save private key
+  copy: content="{{ ec2_key_out.key.private_key }}" dest="{{ ansible_user_dir }}/aws-{{ project_name }}.pem" mode=0400
+  when: ec2_key_out.changed
