@@ -1,4 +1,4 @@
-# Go App Setup
+# DevOps Demo using Ansible
 
 ### Prerequisites
 
@@ -27,7 +27,7 @@ You have setup AWS Varibales in the following YAML file.
 **roles/launch-instance/vars/main.yml**
 
 
-``` 
+```
 ec2_access_key: xxxxxxxxxx
 ec2_secret_key: xxxxxxxxxxxxxxxxxxxxx
 region: us-east-1
@@ -37,7 +37,7 @@ web_count: 1
 app_count: 2
 keypair: "{{ project_name }}-key"
 security_group: "{{ project_name }}-SG"
-image: ami-2d39803a 
+image: ami-2d39803a
 ```
 ### Run
 
@@ -46,7 +46,7 @@ To setup the Whole Stack Run Following command .
 ansible-playbook go-env-setup.yml
 ```
 ### Testing
-Open URL on Browser 
+Open URL on Browser
 ```sh
 <URL_OF_Web_Server>
 ```
