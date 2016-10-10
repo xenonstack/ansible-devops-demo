@@ -1,0 +1,26 @@
+---
+
+- hosts: localhost
+  connection: local
+  become_user: parveen
+  become: yes
+  gather_facts: True
+  roles:
+   - launch-instance
+
+
+- hosts: webserver
+  remote_user: ubuntu
+  become: yes
+  gather_facts: True
+  roles:
+   - webserver
+
+- hosts: appserver
+  remote_user: ubuntu
+  become: yes
+  gather_facts: True
+  roles:
+   - appserver
+
+
