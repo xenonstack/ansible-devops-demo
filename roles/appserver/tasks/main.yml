@@ -1,0 +1,45 @@
+---
+
+## Download the Go Tar file to server
+
+- name: Download the Go tarball
+  get_url:
+    url: "{{ go_download_location }}"
+    dest: /usr/local/{{ go_tarball }}
+  become_method: sudo
+  become: yes
+
+## Extract the Downloaded File 
+
+- name: Extract the Go tarball
+  unarchive:
+    src: /usr/local/{{ go_tarball }}
+    dest: /usr/local
+    copy: no
+  become_method: sudo
+  become: yes
+
+## Add Go path to Env for users
+
+- name: Add the Go bin directory to the PATH environment variable for all users
+  copy:
+    src: bin.sh
+    dest: /etc/profile.d
+  become_method: sudo
+  become: yes
+
+- name: Set GOPATH for all users
+  copy:
+    src: go-path.sh
+    dest: /etc/profile.d
+  become_method: sudo
+  become: yes
+
+## Copy Go File to server 
+
+- name: Copy Go app to run
+  copy: src=go-app.go dest=/home/ubuntu/main.go
+
+## Start the Go app 
+- name: Run Go app
+  shell: "nohup /usr/local/go/bin/go run main.go &"
